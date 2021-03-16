@@ -12,16 +12,14 @@ function makeGrid(size){
         div.classList.add('box');
         container.appendChild(div)
     }
-}
-
-
-//sets an eventlistener for hovering
-const boxes = document.querySelectorAll('.box');
-boxes.forEach((div) => {
-    div.addEventListener('mouseover', () => {
-        div.classList.add('hovered');
-    });
+    //sets an eventlistener for hovering
+    const boxes = document.querySelectorAll('.box');
+    boxes.forEach((div) => {
+        div.addEventListener('mouseover', () => {
+            div.classList.add('hovered');
+        });
 });
+}
 
 const clearButton = document.querySelector("#clearButton");
 clearButton.addEventListener('click', () => {
