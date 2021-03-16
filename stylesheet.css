@@ -11,10 +11,11 @@
     border: 1px solid;
 }
 
-.box:hover{
+.hovered{
     background-color: black;
 }
 
-h1 {
+.header {
     text-align: center;
+    padding-bottom: 20px;
 }
