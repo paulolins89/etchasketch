@@ -20,6 +20,9 @@
 }
 
 .choices{
+    display: flexbox;
+    flex-direction: row;
+    align-items: center;
     text-align: center;
     padding-bottom: 20px;
 }

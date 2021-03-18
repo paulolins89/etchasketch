@@ -18,18 +18,37 @@ function makeGrid(size){
 
 /* TRYING TO SEE IF WE CAN GET THE CHOICES BUTTONS WORKING */
 const choiceButtons = document.querySelectorAll('.choiceButtons');
-choiceButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-        if (button.id == 'blackButton'){
+choiceButtons.forEach((input) => {
+    input.addEventListener('click', () => {
+        if (input.id == 'blackButton'){
             makeBoxesBlack();
-        }else if (button.id == 'randomColorsButton'){
+        }else if (input.id == 'randomColorsButton'){
             makeBoxesRandomColors();
-        }else if (button.id == 'shadesOfBlackButton'){
+        }else if (input.id == 'shadesOfBlackButton'){
             makeBoxesShadesOfBlack();
+        }else if (input.id == 'eraserButton'){
+            erase();
+        }else if (input.id == 'chooseColorButton'){
+            let color = document.getElementById('chooseColorButton').value;
+            chooseColor(color);
+
         }
     });
 });
 
+
+function chooseColor(color){
+    
+    console.log(color);
+    const boxes = document.querySelectorAll('.box');
+    boxes.forEach((div) => {
+        div.addEventListener('mouseover', () => {
+            //this turns on the hovered class and makes it black
+            //div.classList.add('hovered');
+            div.style.backgroundColor = color;    
+        });
+});
+}
 
 function makeBoxesBlack(){
     const boxes = document.querySelectorAll('.box');
@@ -38,6 +57,15 @@ function makeBoxesBlack(){
             //this turns on the hovered class and makes it black
             //div.classList.add('hovered');
             div.style.backgroundColor = "rgb(0, 0, 0)";    
+        });
+});
+}
+
+function erase(){
+    const boxes = document.querySelectorAll('.box');
+    boxes.forEach((div) => {
+        div.addEventListener('mouseover', () => {
+            div.style.backgroundColor = "rgb(255, 255, 255)";    
         });
 });
 }
@@ -65,18 +93,6 @@ function makeBoxesShadesOfBlack (){
         });
 });
 }
-
-/*
-function makeBoxesChosenColor(color){
-    const boxes = document.querySelectorAll('.box');
-    boxes.forEach((div) => {
-        div.addEventListener('mouseover', () => {
-            //this turns on the hovered class and makes it black
-            div.style.backgroundColor = "rgb(" + (Math.random() * 256) + ", " + (Math.random() * 256) + ", " + (Math.random() * 256) + ")"; 
-            });
-});
-}
-*/
 
 //eventlistener to see if button is pressed to change the size of the grid
 const newGrid = document.querySelector("#newGrid");
