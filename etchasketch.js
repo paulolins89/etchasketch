@@ -13,19 +13,37 @@ function makeGrid(size){
         container.appendChild(div)
     }
     //sets an eventlistener for hovering and changing the color of the boxes
-    const boxes = document.querySelectorAll('.box');
-    let idNumber = 1;
-    boxes.forEach((div) => {
-        div.addEventListener('mouseover', () => {
-            div.id = idNumber;
-            const hoveredColor = document.getElementById(idNumber);
-            hoveredColor.style.backgroundColor = "rgb(" + (Math.random() * 256) + ", " + (Math.random() * 256) + ", " + (Math.random() * 256) + ")"; 
-            idNumber++;
-            //div.classList.add('hovered');
-            });
-        //const hoveredColor = document.querySelector('.hovered');
-        //hoveredColor.style.backgroundColor = "rgb(" + (Math.random() * 256) + ", " + (Math.random() * 256) + ", " + (Math.random() * 256) + ")";    
+    const buttons = document.querySelectorAll('.choiceButtons');
+    buttons.forEach((button) =>{
+        button.addEventListener('click', (e) => {
+            if ((button.id) == 'blackButton'){
+                const boxes = document.querySelectorAll('.box');
+                boxes.forEach((div) => {
+                    div.addEventListener('mouseover', () => {
+                        div.classList.add('hovered');
+                    });
+                });
+            }else if ((button.id) == 'randomColorsButton'){
+                const boxes = document.querySelectorAll('.box');
+                boxes.forEach((div) => {
+                    div.addEventListener('mouseover', () => {
+                        div.style.backgroundColor = "rgb(" + (Math.random() * 256) + ", " + (Math.random() * 256) + ", " + (Math.random() * 256) + ")"; 
+                    });
+                });
+            }
+        });
     });
+    
+    //const boxes = document.querySelectorAll('.box');
+    //boxes.forEach((div) => {
+        //div.addEventListener('mouseover', () => {
+            //changes the div to a random color, but you change the color once you go over it again
+            //div.style.backgroundColor = "rgb(" + (Math.random() * 256) + ", " + (Math.random() * 256) + ", " + (Math.random() * 256) + ")"; 
+            
+            //this turns on the hovered class and makes it black
+            //div.classList.add('hovered');
+            //});
+    //});
 }
 
 //eventlistener to see if button is pressed to change the size of the grid
@@ -57,7 +75,9 @@ const clearButton = document.querySelector('#clearButton')
 clearButton.addEventListener('click', () => {
     const boxes = document.querySelectorAll('.box');
     boxes.forEach((div) => {
+        //removes any hovered class added to the grid
         div.classList.remove('hovered');
+        //removes any style attribute added to the grid
         div.removeAttribute('style');
     })
 });
