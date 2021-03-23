@@ -19,7 +19,7 @@ function makeGrid(size){
 /* TRYING TO SEE IF WE CAN GET THE CHOICES BUTTONS WORKING */
 const choiceButtons = document.querySelectorAll('.choiceButtons');
 choiceButtons.forEach((input) => {
-    input.addEventListener('click', () => {
+    input.addEventListener('click', (e) => {
         if (input.id == 'blackButton'){
             makeBoxesBlack();
         }else if (input.id == 'randomColorsButton'){
@@ -37,9 +37,9 @@ choiceButtons.forEach((input) => {
 });
 
 
+//need to fix this function
 function chooseColor(color){
-    
-    console.log(color);
+    //console.log(color);
     const boxes = document.querySelectorAll('.box');
     boxes.forEach((div) => {
         div.addEventListener('mouseover', () => {
@@ -53,10 +53,10 @@ function chooseColor(color){
 function makeBoxesBlack(){
     const boxes = document.querySelectorAll('.box');
     boxes.forEach((div) => {
-        div.addEventListener('mouseover', () => {
+        div.addEventListener('mouseover', (e) => {
             //this turns on the hovered class and makes it black
             //div.classList.add('hovered');
-            div.style.backgroundColor = "rgb(0, 0, 0)";    
+            e.currentTarget.style.backgroundColor = "rgb(0, 0, 0)";    
         });
 });
 }
@@ -73,23 +73,28 @@ function erase(){
 function makeBoxesRandomColors(){
     const boxes = document.querySelectorAll('.box');
     boxes.forEach((div) => {
-        div.addEventListener('mouseover', () => {
+        div.addEventListener('mouseover', (e) => {
             //this turns on the hovered class and makes it black
-            div.style.backgroundColor = "rgb(" + (Math.random() * 256) + ", " + (Math.random() * 256) + ", " + (Math.random() * 256) + ")"; 
+            e.currentTarget.style.backgroundColor = "rgb(" + (Math.random() * 255) + ", " + (Math.random() * 255) + ", " + (Math.random() * 255) + ")"; 
             });
 });
 }
 
 function makeBoxesShadesOfBlack (){
     const boxes = document.querySelectorAll('.box');
-    let lightness = 0;
+    //let lightness = 0;
     boxes.forEach((div) => {
-        div.addEventListener('mouseover', () => {
-            div.style.backgroundColor = "hsl(0, 0%, " + lightness + "%)";
-            lightness = lightness + 10;
-            if (lightness == 100){
-                lightness = 0;
+        div.addEventListener('mouseover', (e) => {
+            if ((e.currentTarget.style.backgroundColor == 'rgb(0, 0, 0)') || (e.currentTarget.style.backgroundColor == 'rgb(255, 255, 255)')){
+                console.log('found!');
+            }else{
+                console.log('not working');
             }
+            //div.style.backgroundColor = "hsl(0, 0%, " + lightness + "%)";
+            //lightness = lightness + 10;
+            //if (lightness == 100){
+                //lightness = 0;
+            //}
         });
 });
 }
